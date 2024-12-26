@@ -38,7 +38,6 @@
 # Example 2
 #
 
-from __future__ import print_function
 from time import sleep
 import sys
 import qwiic_titan_gps

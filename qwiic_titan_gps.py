@@ -58,11 +58,11 @@ This package can be used in conjunction with the overall `SparkFun Qwiic Python 
 New to Qwiic? Take a look at the entire `SparkFun Qwiic ecosystem <https://www.sparkfun.com/qwiic>`_.
 
 """
-from __future__ import print_function,division
 
 import sys
 import qwiic_i2c
-import pynmea2
+# import pynmea2
+from micropyGPS import MicropyGPS
 
 #======================================================================
 # NOTE: For Raspberry Pi
@@ -233,6 +233,8 @@ class QwiicTitanGps(object):
         else:
             self._i2c = i2c_driver
 
+        self.gps = MicropyGPS(location_formatting='dd')
+
     # ----------------------------------
 
     def is_connected(self):
@@ -336,15 +338,21 @@ class QwiicTitanGps(object):
         gps_data = self.prepare_data()
         msg = ""
         for sentence in gps_data:
-            try:
-                msg = pynmea2.parse(sentence)
-                self.add_to_gnss_messages(msg)
-            except pynmea2.nmea.ParseError:
-                pass
+            # msg = pynmea2.parse(sentence)
+            self.feed_sentence(sentence)
+            # self.add_to_gnss_messages(msg)
+            self.add_to_gnss_messages()
 
         return True
+    
+    def feed_sentence(self, sentence):
+        """
+        Feeds a NMEA sentence to the GPS parser one character at a time
+        """
+        for b in sentence:
+            self.gps.update(b)
 
-    def add_to_gnss_messages(self, sentence):
+    def add_to_gnss_messages(self):
 
         """
 
@@ -355,18 +363,18 @@ class QwiicTitanGps(object):
 
         """
         try:
-            self.gnss_messages['Time'] = sentence.timestamp
-            self.gnss_messages['Lat_Direction'] = sentence.lat_dir
-            self.gnss_messages['Long_Direction'] = sentence.lon_dir
-            self.gnss_messages['Latitude'] = sentence.latitude
-            self.gnss_messages['Lat'] = sentence.lat
-            self.gnss_messages['Longitude'] = sentence.longitude
-            self.gnss_messages['Long'] = sentence.lon
-            self.gnss_messages['Altitude'] = sentence.altitude
-            self.gnss_messages['Altitude_Units'] = sentence.altitude_units
-            self.gnss_messages['Sat_Number'] = sentence.num_sats
-            self.gnss_messages['Geo_Separation'] = sentence.geo_sep
-            self.gnss_messages['Geo_Sep_Units'] = sentence.geo_sep_units
+            self.gnss_messages['Time'] = self.gps.timestamp
+            self.gnss_messages['Lat_Direction'] = self.gps.latitude[1]
+            self.gnss_messages['Long_Direction'] = self.gps.longitude[1]
+            self.gnss_messages['Latitude'] = self.gps.latitude[0]
+            # self.gnss_messages['Lat'] = sentence.lat
+            self.gnss_messages['Longitude'] = self.gps.longitude[0]
+            # self.gnss_messages['Long'] = sentence.lon
+            self.gnss_messages['Altitude'] = self.gps.altitude
+            # self.gnss_messages['Altitude_Units'] = sentence.altitude_units
+            self.gnss_messages['Sat_Number'] = self.gps.satellites_in_use
+            self.gnss_messages['Geo_Separation'] = self.gps.geoid_height
+            # self.gnss_messages['Geo_Sep_Units'] = sentence.geo_sep_units
         except KeyError:
             pass
         except AttributeError:
