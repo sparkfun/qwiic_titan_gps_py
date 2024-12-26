@@ -192,19 +192,14 @@ class QwiicTitanGps(object):
     _RPiCheck = False
 
     gnss_messages = {
-
         'Time'           : 0,
         'Latitude'       : 0,
-        'Lat'            : 0,
         'Lat_Direction'  : "",
         'Longitude'      : 0,
-        'Long'           : 0,
         'Long_Direction' : "",
         'Altitude'       : 0,
-        'Altitude_Units' : "",
         'Sat_Number'     : 0,
         'Geo_Separation' : 0,
-        'Geo_Sep_Units'  : "",
     }
 
     def __init__(self, address=None, i2c_driver=None):
@@ -338,9 +333,7 @@ class QwiicTitanGps(object):
         gps_data = self.prepare_data()
         msg = ""
         for sentence in gps_data:
-            # msg = pynmea2.parse(sentence)
             self.feed_sentence(sentence)
-            # self.add_to_gnss_messages(msg)
             self.add_to_gnss_messages()
 
         return True
@@ -367,14 +360,10 @@ class QwiicTitanGps(object):
             self.gnss_messages['Lat_Direction'] = self.gps.latitude[1]
             self.gnss_messages['Long_Direction'] = self.gps.longitude[1]
             self.gnss_messages['Latitude'] = self.gps.latitude[0]
-            # self.gnss_messages['Lat'] = sentence.lat
             self.gnss_messages['Longitude'] = self.gps.longitude[0]
-            # self.gnss_messages['Long'] = sentence.lon
             self.gnss_messages['Altitude'] = self.gps.altitude
-            # self.gnss_messages['Altitude_Units'] = sentence.altitude_units
             self.gnss_messages['Sat_Number'] = self.gps.satellites_in_use
             self.gnss_messages['Geo_Separation'] = self.gps.geoid_height
-            # self.gnss_messages['Geo_Sep_Units'] = sentence.geo_sep_units
         except KeyError:
             pass
         except AttributeError:
