@@ -59,7 +59,7 @@ def run_example():
             print("Latitude: {}, Longitude: {}, Time: {}".format(
                 qwiicGPS.gnss_messages['Latitude'],
                 qwiicGPS.gnss_messages['Longitude'],
-                qwiicGPS.gnss_messages['Time']))
+                qwiicGPS.gnss_messages['Time'])) # Time will be UTC time as a list [hh, mm, ss]
 
         sleep(1)
 
