@@ -44,8 +44,7 @@
 # pylint: disable=line-too-long, bad-whitespace, invalid-name, too-many-public-methods
 #
 
-"""
-
+"""!
 qwiic_titan_gps
 ===============
 Python library for `SparkFun GPS Breakout -
@@ -56,7 +55,6 @@ This python package is a port of the existing `SparkFun GPS Arduino Library <htt
 This package can be used in conjunction with the overall `SparkFun Qwiic Python Package <https://github.com/sparkfun/Qwiic_Py>`_
 
 New to Qwiic? Take a look at the entire `SparkFun Qwiic ecosystem <https://www.sparkfun.com/qwiic>`_.
-
 """
 
 import sys
@@ -139,8 +137,8 @@ def _checkForRPiI2CClockStretch():
     # set correctly.
     # Print out a message!
 
-    print("""
-============================================================================
+    print("""!
+        ============================================================================
  NOTE:
 
  For the SparkFun GPS Breakout to work on the Raspberry Pi, I2C clock stretching
@@ -169,17 +167,15 @@ _DEFAULT_NAME = "Qwiic Titan GPS"
 _AVAILABLE_I2C_ADDRESS = [0x10]
 
 class QwiicTitanGps(object):
-    """
-
+    """!
     QwiicTitanGps
 
-        :param address: The I2C address to use for the device.
-                        If not provided, the default address is used.
-        :param i2c_driver: An existing i2c driver object. If not provided
-                        a driver object is created.
-        :return: The Qwiic Titan GPS device object.
-        :rtype: Object
+    @param address: The I2C address to use for the device.
+                    If not provided, the default address is used.
+    @param i2c_driver: An existing i2c driver object. If not provided
+                    a driver object is created.
 
+    @return **Object** The Qwiic Titan GPS device object.
     """
 
     device_name = _DEFAULT_NAME
@@ -234,13 +230,10 @@ class QwiicTitanGps(object):
 
     def is_connected(self):
 
-        """
+        """!
+        Determine if a GPS device is connected to the system..
 
-            Determine if a GPS device is connected to the system..
-
-            :return: True if the device is connected, otherwise False.
-            :rtype: bool
-
+        @return **bool** True if the device is connected, otherwise False.
         """
         return qwiic_i2c.isDeviceConnected(self.address)
 
@@ -248,24 +241,18 @@ class QwiicTitanGps(object):
 
     def begin(self):
 
-        """
+        """!
+        Initialize the data transmission lines.
 
-            Initialize the data transmission lines.
-
-            :return: Returns True on success, False on failure
-            :rtype: boolean
-
+        @return **boolean** Returns True on success, False on failure
         """
         return self.is_connected()
 
     def get_raw_data(self):
+        """!
+        This function pulls GPS data from the module 255 bytes at a time.
 
-        """
-
-            This function pulls GPS data from the module 255 bytes at a time.
-            :return: A string of all the GPS data.
-            :rtype: String
-
+        @return **String** A string of all the GPS data.
         """
         raw_sentences = ""
         buffer_tracker = self.MAX_GPS_BUFFER
@@ -294,13 +281,11 @@ class QwiicTitanGps(object):
 
     def prepare_data(self):
 
-        """
+        """!
+        This function seperates raw GPS data from the module into sentences
+        of GNSS data.
 
-            This function seperates raw GPS data from the module into sentences
-            of GNSS data.
-            :return: A list of all the gathered GPS data.
-            :rtype: List
-
+        @return **List** A list of all the gathered GPS data.
         """
         sentences = self.get_raw_data()
         clean_gnss_list = []
@@ -322,13 +307,11 @@ class QwiicTitanGps(object):
 
     def get_nmea_data(self):
 
-        """
+        """!
+        This function takes a list of GNSS sentences and uses the pynmea2
+        parser to parse the data.
 
-            This function takes a list of GNSS sentences and uses the pynmea2
-            parser to parse the data.
-            :return: Returns True on success and False otherwise
-            :rtype: Boolean
-
+        @return **Boolean** Returns True on success and False otherwise
         """
         gps_data = self.prepare_data()
         msg = ""
@@ -339,21 +322,18 @@ class QwiicTitanGps(object):
         return True
     
     def feed_sentence(self, sentence):
-        """
+        """!
         Feeds a NMEA sentence to the GPS parser one character at a time
         """
         for b in sentence:
             self.gps.update(b)
 
     def add_to_gnss_messages(self):
+        """!
+        This function takes parsed GNSS data and assigns them to the
+        respective dictionary key.
 
-        """
-
-            This function takes parsed GNSS data and assigns them to the
-            respective dictionary key.
-            :return: Returns True
-            :rtype: Boolean
-
+        @return **Boolean** Returns True
         """
         try:
             self.gnss_messages['Time'] = self.gps.timestamp
