@@ -1,99 +1,124 @@
-Qwiic GPS Breakout XA1110
-==============
+![Qwiic TITAN_GPS - Python Package](docs/images/gh-banner.png "qwiic TITAN_GPS Python Package")
 
-<p align="center">
-   <img src="https://cdn.sparkfun.com/assets/custom_pages/2/7/2/qwiic-logo-registered.jpg"  width=200>  
-   <img src="https://www.python.org/static/community_logos/python-logo-master-v3-TM.png"  width=240>   
-</p>
-<p align="center">
-	<a href="https://pypi.org/project/sparkfun-qwiic-titan-gps/" alt="Package">
-		<img src="https://img.shields.io/pypi/pyversions/sparkfun_qwiic_vl53l1x.svg" /></a>
-	<a href="https://github.com/sparkfun/Qwiic_Titan_Gps_Py/issues" alt="Issues">
-		<img src="https://img.shields.io/github/issues/sparkfun/Qwiic_Titan_Gps_Py.svg" /></a>
-	<a href="https://qwiic-titan-gps-py.readthedocs.io/en/latest/" alt="Documentation">
-		<img src="https://readthedocs.org/projects/qwiic-titan_gps-py/badge/?version=latest&style=flat" /></a>
-	<a href="https://github.com/sparkfun/Qwiic_Titan_Gps_Py/blob/master/LICENSE" alt="License">
-		<img src="https://img.shields.io/badge/license-MIT-blue.svg" /></a>
-	<a href="https://twitter.com/intent/follow?screen_name=sparkfun">
-        	<img src="https://img.shields.io/twitter/follow/sparkfun.svg?style=social&logo=twitter"
-           	 alt="follow on Twitter"></a>
-	
-</p>
+# SparkFun Qwiic TITAN_GPS - Python Package
 
-<img src="https://cdn.sparkfun.com//assets/parts/1/2/3/4/0/14414-SparkFun_GPS_Breakout_-_XA1110__Qwiic_-01.jpg"  align="right" width=300 alt="SparkFun Qwiic GPS Breakout XA1110">
+![PyPi Version](https://img.shields.io/pypi/v/sparkfun_qwiic_titan_gps)
+![GitHub issues](https://img.shields.io/github/issues/sparkfun/qwiic_titan_gps_py)
+![License](https://img.shields.io/github/license/sparkfun/qwiic_titan_gps_py)
+![X](https://img.shields.io/twitter/follow/sparkfun)
+[![API](https://img.shields.io/badge/API%20Reference-blue)](https://docs.sparkfun.com/qwiic_titan_gps_py/classqwiic__titan__gps_1_1_qwiic_titan_gps.html)
 
-Python module for the [Qwiic GPS Breakout XA1110 (Qwiic)](https://www.sparkfun.com/products/14414).
+The SparkFun Qwiic GPS Receiver TITAN_GPS Module provides a simple and cost effective solution for adding GPS Receiver capabilities to your project. Implementing a SparkFun Qwiic I2C interface, these sensors can be rapidly added to any project with boards that are part of the SparkFun Qwiic ecosystem.
 
-This package should be used in conjunction with the overall [SparkFun qwiic Python Package](https://github.com/sparkfun/Qwiic_Py). New to qwiic? Take a look at the entire [SparkFun qwiic ecosystem](https://www.sparkfun.com/qwiic).
-## Contents
-* [Supported Platforms](#supported-platforms)
-* [Dependencies](#dependencies)
+This repository implements a Python package for the SparkFun Qwiic TITAN_GPS. This package works with Python, MicroPython and CircuitPython.
+
+### Contents
+
+* [About](#about-the-package)
+* [Getting Started](#getting-started)
 * [Installation](#installation)
-* [Documentation](#documentation)
-* [Example Use](#example-use)
+* [Supported Platforms](#supported-platforms)
+* [Documentation](https://docs.sparkfun.com/qwiic_titan_gps_py/classqwiic__titan__gps_1_1_qwiic_titan_gps.html)
+* [Examples](#examples)
 
-Supported Platforms
----
-The Qwiic Titan GPS Python package current supports the following platforms:
-* [Raspberry Pi](https://www.sparkfun.com/search/results?term=raspberry+pi)
+## About the Package
 
-Platforms to be tested
----
-* [Nvidia Jetson Nano](https://www.sparkfun.com/products/15297)
-* [Google Coral Development Board](https://www.sparkfun.com/products/15318)
+This python package enables the user to access the features of the TITAN_GPS via a single Qwiic cable. This includes reading Latitude and Longitude, reading altiude, reading time and more. The capabilities of the TITAN_GPS are each demonstrated in the included examples.
 
-Dependencies 
----------------
-This package depends on the Qwiic I2C driver: [Qwiic_I2C_Py](https://github.com/sparkfun/Qwiic_I2C_Py)
+New to qwiic? Take a look at the entire [SparkFun qwiic ecosystem](https://www.sparkfun.com/qwiic).
 
-Documentation
--------------
-The SparkFun Qwiic Titan GPS module documentation is hosted at [ReadTheDocs](https://qwiic-titan-gps-py.readthedocs.io/en/latest/)
+### Supported SparkFun Products
 
-Installation
--------------
+This Python package supports the following SparkFun qwiic products on Python, MicroPython and Circuit python. 
 
-### PyPi Installation
-This repository is hosted on PyPi as the [sparkfun-qwiic-titan-gps](https://pypi.org/project/sparkfun-qwiic-titan-gps/) 
-package. On systems that support PyPi installation via pip, this library is installed using the following commands
+* [SparkFun GPS Receiver Sensor - TITAN_GPS](https://www.sparkfun.com/products/14414)
 
-For all users (note: the user must have sudo privileges):
+### Supported Platforms
+
+| Python | Platform | Boards |
+|--|--|--|
+| Python | Linux | [Raspberry Pi](https://www.sparkfun.com/raspberry-pi-5-8gb.html) , [NVIDIA Jetson Orin Nano](https://www.sparkfun.com/nvidia-jetson-orin-nano-developer-kit.html) via the [SparkFun Qwiic SHIM](https://www.sparkfun.com/sparkfun-qwiic-shim-for-raspberry-pi.html) |
+| MicroPython | Raspberry Pi - RP2, ESP32 | [SparkFun RP2040 Thing+](https://www.sparkfun.com/sparkfun-thing-plus-rp2040.html), [SparkFun RP2350 Thing+](https://www.sparkfun.com/sparkfun-thing-plus-rp2350.html), [SparkFun ESP32 Thing+](https://www.sparkfun.com/sparkfun-thing-plus-esp32-wroom-usb-c.html)
+|CircuitPython | Raspberry Pi - RP2, ESP32 | [SparkFun RP2040 Thing+](https://www.sparkfun.com/sparkfun-thing-plus-rp2040.html), [SparkFun RP2350 Thing+](https://www.sparkfun.com/sparkfun-thing-plus-rp2350.html), [SparkFun ESP32 Thing+](https://www.sparkfun.com/sparkfun-thing-plus-esp32-wroom-usb-c.html)
+
+> [!NOTE]
+> The listed supported platforms and boards are the primary platform targets tested. It is fully expected that this package will work across a wide variety of Python enabled systems. 
+
+## Installation 
+
+The first step to using this package is installing it on your system. The install method depends on the python platform. The following sections outline installation on Python, MicroPython and CircuitPython.
+
+### Python 
+
+#### PyPi Installation
+
+The package is primarily installed using the `pip3` command, downloading the package from the Python Index - "PyPi". 
+
+Note - the below instructions outline installation on a Linux-based (Raspberry Pi) system.
+
+First, setup a virtual environment from a specific directory using venv:
 ```sh
-sudo pip install sparkfun-qwiic-titan-gps
-sudo pip install pynmea2
+python3 -m venv path/to/venv
 ```
-For the current user:
+You can pass any path as path/to/venv, just make sure you use the same one for all future steps. For more information on venv [click here](https://docs.python.org/3/library/venv.html).
 
+Next, install the qwiic package with:
 ```sh
-sudo pip install sparkfun-qwiic-titan-gps
-sudo pip install pynmea2
+path/to/venv/bin/pip3 install sparkfun-qwiic-titan_gps
+```
+Now you should be able to run any example or custom python scripts that have `import qwiic_titan_gps` by running e.g.:
+```sh
+path/to/venv/bin/python3 example_script.py
 ```
 
-### Local Installation
-To install, make sure the setuptools package is installed on the system.
+### MicroPython Installation
+If not already installed, follow the [instructions here](https://docs.micropython.org/en/latest/reference/mpremote.html) to install mpremote on your computer.
 
-Direct installation at the command line:
+Connect a device with MicroPython installed to your computer and then install the package directly to your device with mpremote mip.
 ```sh
-python setup.py install
+mpremote mip install github:sparkfun/qwiic_titan_gps_py
 ```
 
-To build a package for use with pip:
+If you would also like to install the examples for this repository, issue the following mip command as well:
 ```sh
-python setup.py sdist
- ```
-A package file is built and placed in a subdirectory called "dist". This package file can be installed using pip.
-```sh
-cd dist
-pip install sparkfun_qwiic_titan_gps-<version>.tar.gz
-  
+mpremote mip install github:sparkfun/qwiic_titan_gps_py@examples
 ```
+
+### CircuitPython Installation
+If not already installed, follow the [instructions here](https://docs.circuitpython.org/projects/circup/en/latest/#installation) to install CircUp on your computer.
+
+Ensure that you have the latest version of the SparkFun Qwiic CircuitPython bundle. 
+```sh
+circup bundle-add sparkfun/Qwiic_Py
+```
+
+Finally, connect a device with CircuitPython installed to your computer and then install the package directly to your device with circup.
+```sh
+circup install --py qwiic_titan_gps
+```
+
+If you would like to install any of the examples from this repository, issue the corresponding circup command from below. (NOTE: The below syntax assumes you are using CircUp on Windows. Linux and Mac will have different path seperators (i.e. "/" vs. "\"). See the [CircUp "example" command documentation](https://learn.adafruit.com/keep-your-circuitpython-libraries-on-devices-up-to-date-with-circup/example-command) for more information)
+
+```sh
+circup example qwiic_titan_gps\qwiic_gps_ex1
+circup example qwiic_titan_gps\qwiic_gps_ex2
+```
+
 Example Use
----------------
+ ---------------
+Below is a quickstart program to print readings from the TITAN_GPS.
+
+See the examples directory for more detailed use examples and [examples/README.md](https://github.com/sparkfun/qwiic_titan_gps_py/blob/main/examples/README.md) for a summary of the available examples.
 
 ```python
+
+from time import sleep
+import sys
+import qwiic_titan_gps
+
 def run_example():
 
-    print("SparkFun u-blox GPS!")
+    print("SparkFun GPS Breakout - XA1110!")
     qwiicGPS = qwiic_titan_gps.QwiicTitanGps()
 
     if qwiicGPS.connected is False:
@@ -108,7 +133,7 @@ def run_example():
             print("Latitude: {}, Longitude: {}, Time: {}".format(
                 qwiicGPS.gnss_messages['Latitude'],
                 qwiicGPS.gnss_messages['Longitude'],
-                qwiicGPS.gnss_messages['Time']))
+                qwiicGPS.gnss_messages['Time'])) # Time will be UTC time as a list [hh, mm, ss]
 
         sleep(1)
 
@@ -119,7 +144,8 @@ if __name__ == '__main__':
     except (KeyboardInterrupt, SystemExit) as exErr:
         print("Ending Basic Example.")
         sys.exit(0)
- ```
 
-See the examples directory for more detailed use examples.
-
+```
+<p align="center">
+<img src="https://cdn.sparkfun.com/assets/custom_pages/3/3/4/dark-logo-red-flame.png" alt="SparkFun - Start Something">
+</p>
