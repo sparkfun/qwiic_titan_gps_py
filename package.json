@@ -1,10 +1,7 @@
 {
     "urls": [
-      ["qwiic_titan_gps.py", "github:sparkfun/Qwiic_Titan_Gps_Py/qwiic_titan_gps.py"],
-      ["micropyGPS.py", "github:sparkfun/Qwiic_Titan_Gps_Py/micropyGPS.py"]
-    ],
-    "deps": [
-      ["github:sparkfun/Qwiic_I2C_Py", "master"]
+      ["qwiic_titan_gps_py_examples/qwiic_gps_ex1.py", "github:sparkfun/qwiic_titan_gps_py/examples/qwiic_gps_ex1.py"],
+      ["qwiic_titan_gps_py_examples/qwiic_gps_ex2.py", "github:sparkfun/qwiic_titan_gps_py/examples/qwiic_gps_ex2.py"]
     ],
     "version": "0.1.2"
 }
