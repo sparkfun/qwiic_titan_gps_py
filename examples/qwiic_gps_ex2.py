@@ -55,10 +55,13 @@ def run_example():
     qwiicGPS.begin()
 
     while True:
-        if qwiicGPS.get_nmea_data() is True:
-            for k,v in qwiicGPS.gnss_messages.items():
-                print(k, ":", v)
-
+        try:
+            if qwiicGPS.get_nmea_data() is True:
+                for k,v in qwiicGPS.gnss_messages.items():
+                    print(k, ":", v)
+        except:
+            print("Error while retreiving GPS values!")
+            
         sleep(1)
 
 

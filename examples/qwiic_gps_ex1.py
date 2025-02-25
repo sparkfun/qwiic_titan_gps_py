@@ -55,11 +55,14 @@ def run_example():
     qwiicGPS.begin()
 
     while True:
-        if qwiicGPS.get_nmea_data() is True:
-            print("Latitude: {}, Longitude: {}, Time: {}".format(
-                qwiicGPS.gnss_messages['Latitude'],
-                qwiicGPS.gnss_messages['Longitude'],
-                qwiicGPS.gnss_messages['Time'])) # Time will be UTC time as a list [hh, mm, ss]
+        try:
+            if qwiicGPS.get_nmea_data() is True:
+                print("Latitude: {}, Longitude: {}, Time: {}".format(
+                    qwiicGPS.gnss_messages['Latitude'],
+                    qwiicGPS.gnss_messages['Longitude'],
+                    qwiicGPS.gnss_messages['Time'])) # Time will be UTC time as a list [hh, mm, ss]
+        except:
+            print("Error while retrieving GPS Values!")
 
         sleep(1)
 

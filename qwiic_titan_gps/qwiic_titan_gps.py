@@ -59,8 +59,7 @@ New to Qwiic? Take a look at the entire `SparkFun Qwiic ecosystem <https://www.s
 
 import sys
 import qwiic_i2c
-# import pynmea2
-from micropyGPS import MicropyGPS
+from .micropyGPS import MicropyGPS
 
 #======================================================================
 # NOTE: For Raspberry Pi
@@ -184,7 +183,6 @@ class QwiicTitanGps(object):
     MAX_I2C_BUFFER = 32
     MAX_GPS_BUFFER = 255
 
-    _i2c = qwiic_i2c.getI2CDriver()
     _RPiCheck = False
 
     gnss_messages = {
